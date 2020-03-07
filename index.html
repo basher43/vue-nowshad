@@ -32,7 +32,7 @@
 				<ul class="list-group">
 				  <li class="list-group-item" v-for="(item, i) in items"> <button @click="removeItem(i)" class="btn btn-danger">X</button>{{item.product}}<span class="float-right">{{item.price}}</span></li> 
 				  
-				  <li class="list-group-item"><strong>Total</strong>: <strong class="float-right">120</strong></li>
+				  <li class="list-group-item"><strong>Total</strong>: <strong class="float-right">{{total}}</strong></li>
 				</ul>
 			</div>
 		</div>
@@ -58,6 +58,16 @@
 				},
 				removeItem:function(id){
 					this.items.splice(id, 1)
+				}
+			},
+			computed:{
+				
+				total(){
+					let total1 = 0;
+					this.items.forEach(s=>{
+						total1 += parseFloat(s.price)
+					})
+					return total1;
 				}
 			}
 
